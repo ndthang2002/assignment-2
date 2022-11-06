@@ -4,71 +4,105 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.SerializationUtils;
 import org.springframework.web.context.annotation.SessionScope;
 
+import com.thang.DAO.ProductDAO;
+import com.thang.bean.Item;
+import com.thang.entity.Product;
 
-import com.thang.entity.giohang;
 @SessionScope
 @Service
 
-public class ShoppingCartServiceImpl implements ShoppingCartService{
- 
-	Map<Integer, giohang> map = new HashMap<>();
+public class ShoppingCartServiceImpl implements ShoppingCartService {
+
+	@Autowired
+	ProductDAO pdao;
+
+	Map<Integer, Item> map = new HashMap<>();
+
 	@Override
-	public giohang add(Integer id) {
-		// TODO Auto-generated method stub
-		
-		giohang item = map.get(id);
-		
+	public Item add(Integer id) {
+		System.out.println("so nguyen day :" + id);
+		Item item = map.get(id);
+			int idd = id;
+try {
+	if (item == null) {
+
+			Product p = pdao.findByProductId(idd);
+			Item i = new Item();
+			i.setId(p.getId());
+			i.setName(p.getName());
+			i.setPrice(p.getPrice());
+			i.setImage(p.getImage());
+			item = i;	
+			item.setQty(1);
 			map.put(id, item);
-	
+
+		} else {
+			item.setQty(item.getQty() + 1);
+		}
+} catch (Exception e) {
+	// TODO: handle exception
+	e.printStackTrace();
+}
 		
+
+//		
+//			if(item != null) {
+//			
+//			Product p =pdao.findByProductId(idd);
+//			Item i = new Item();
+//			i.setId(p.getId());
+//			i.setName(p.getName());
+//			i.setPrice(p.getPrice());
+//			i.setImage(p.getImage());
+//			item = i;
+//			item.setQty(1);
+//			map.put(id,	 item);
+//			
+//		
+//		} else {
+//			item.setQty(item.getQty() + 1);
+//		}
+//	
+
 		return item;
+
 	}
 
 	@Override
 	public void remove(Integer id) {
-		// TODO Auto-generated method stub
 		map.remove(id);
-		
 	}
 
 	@Override
-	public giohang update(Integer id, int quantity) {
-		// TODO Auto-generated method stub
-		giohang item = map.get(id);
-		item.setQuantity(quantity);
+	public Item update(Integer id, int qty) {
+		Item item = map.get(id);
+		item.setQty(qty);
 		return item;
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
 		map.clear();
-		
 	}
 
 	@Override
-	public Collection<giohang> getProducts() {
-		// TODO Auto-generated method stub
+	public Collection<Item> getItems() {
 		return map.values();
+
 	}
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return map.values().stream().mapToInt(item -> item.getQuantity())
-				.sum();
+		return map.values().stream().mapToInt(item -> item.getQty()).sum();
 	}
 
 	@Override
 	public double getAmount() {
-		// TODO Auto-generated method stub
-		return map.values().stream().mapToDouble(item -> item.getPrice() * item.getQuantity())
-				.sum();
-		
+		return map.values().stream().mapToDouble(item -> item.getPrice() * item.getQty()).sum();
 	}
-
 }

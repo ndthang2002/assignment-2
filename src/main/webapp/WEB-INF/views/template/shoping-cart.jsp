@@ -559,12 +559,15 @@
 								</tr>
 
 
-								gio hang 
+								<!-- gio hang  -->
 							
-									<!-- <c:set var="tongtien" value="${sessionScope.quantity *sessionScope.price}"> </c:set>
-								<c:forEach var="item" begin="1" end="1"> --> -->
-									<c:forEach var="item" items="${cart.giohang}">
-								 <tr class="table_row">
+<!-- 								
+									<c:set var="tongtien" value="${sessionScope.quantity *sessionScope.price}"> </c:set>
+								<c:forEach var="item" begin="1" end="1"> -->
+									
+									<c:forEach var="item" items="${cart.content}">
+
+									<tr class="table_row">
 										<td class="column-1">
 											<div class="how-itemcart1">
 												<img src="images/${sessionScope.image}" alt="IMG">
@@ -577,21 +580,19 @@
 												<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 													<i class="fs-16 zmdi zmdi-minus"></i>
 												</div>
-												<td><input name="qty" value="${item.quantity}" 
-													onblur="this.form.submit()" style="width:50px;"></td>
-												<!-- <input class="mtext-104 cl3 txt-center num-product" type="number"
-													name="num-product1" value="${sessionScope.quantity}"> -->
+
+												<input class="mtext-104 cl3 txt-center num-product" type="number"
+													name="num-product1" value="${item.qty}">
 
 												<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 													<i class="fs-16 zmdi zmdi-plus"></i>
 												</div>
 											</div>
 										</td>
-										<td class="column-5">${item.price * item.quantity}</td>
-									</tr> -->
-
-									</c:forEach>
-							 <!-- </c:forEach> -->
+										<td class="column-5">${item.price * item.qty}</td>
+									</tr>
+								<!-- </c:forEach> -->
+								<!-- </c:forEach> -->
 						
 							
 								<tr class="table_row">

@@ -40,7 +40,45 @@
 <!--===============================================================================================-->
 </head>
 <style>
+	.dropbtn {
+	
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .account_icon {
+	position: relative;
+	display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .account_icon-content {
+	display: none;
+	position: absolute;
+	
+   min-width: 150px;
+   height: 150px;
+  
+	z-index: 1;
+	margin-left: -19px;
+	border-radius: 10px;
+	
+  }
+  
+  /* Links inside the dropdown */
+  .account_icon-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	font-weight: bold;
+  }
+  .account_icon:hover .account_icon-content {display: block; background-color: #05b9fb; height:150px;}
 
+
+list the loai san pham
 	.dropbtn {
 	
   padding: 16px;
@@ -173,7 +211,10 @@ transition:3s;
 .Categories:hover{
 	color: #FFFF00;
 }
+
+
 </style>
+</head>
 <body class="animsition">
 	
 	<jsp:include page="header.jsp"/>
@@ -284,7 +325,7 @@ transition:3s;
 	</div>
 		
 	<!-- Product Detail -->
-	<form action="/addtocart?idsanpham=${productdetail.id}" method="post" modelAttribute="addcart">
+	
 
 
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
@@ -392,16 +433,17 @@ transition:3s;
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input path="quantity" class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1">
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<!-- <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
-									</button>
+									</button> -->
+									<a href="/addtocart?id=${productdetail.id}"  class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" >Add to cart</a>
 								</div>
 							</div>	
 						</div>
@@ -604,7 +646,7 @@ transition:3s;
 				</div>
 			</div>
 		</div>
-</form>
+
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
 			<span class="stext-107 cl6 p-lr-25">
 				SKU: JAK-01

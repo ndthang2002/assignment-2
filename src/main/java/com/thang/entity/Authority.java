@@ -18,7 +18,7 @@ public class Authority implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="Id")
+	@Column(name="id")
 	private int id;
 
 	//bi-directional many-to-one association to Account

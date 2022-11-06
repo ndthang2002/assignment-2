@@ -16,16 +16,16 @@ import java.util.List;
  */
 @Data
 @Entity
-@Table(name="Categories")
+@Table(name="categories")
 //@NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="category_id")
-	private String id;
+    @GeneratedValue
+	private int id;
 
-	@Column(name="Name")
+
 	private String name;
 
 	//bi-directional many-to-one association to Product

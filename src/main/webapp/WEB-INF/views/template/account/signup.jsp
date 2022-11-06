@@ -143,7 +143,7 @@
       <div class="row mar20" >
         <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="inner-section">
-            <form method="POST" action="/account/signup"  enctype="multipart/form-data" modelAttribute="account">
+            <form method="POST" action="/signup"  enctype="multipart/form-data" modelAttribute="account">
               <div class="mar20 inside-form">
                 <h2 class="font_white text-center">SIGN UP</h2>
                 <ul>

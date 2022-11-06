@@ -22,10 +22,10 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="Id")
+	@Column(name="id")
 	private long id;
 
-	@Column(name="Address")
+	
 	private String address;
 
 	@Temporal(TemporalType.DATE)

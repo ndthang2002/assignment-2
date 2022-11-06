@@ -123,7 +123,7 @@ margin-left: 4px;
 				</div>
 			</div>
 			<div class="card-body">
-				<form action="/account/login"  method="post">
+				<form action="/login"  method="post">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -148,10 +148,10 @@ margin-left: 4px;
 			</div>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href="/account/signup">Sign Up</a>
+					Don't have an account?<a href="/signup">Sign Up</a>
 				</div>
 				<div class="d-flex justify-content-center">
-					<a href="/account/forgotpassword">Forgot your password?</a>
+					<a href="/forgotpassword">Forgot your password?</a>
 				</div>
 			</div>
 		</div>

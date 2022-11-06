@@ -1,29 +1,20 @@
 package com.thang.controller;
 
 import java.io.File;
-import java.util.List;
-import java.util.Optional;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.jdbc.core.metadata.CallMetaDataContext;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -46,19 +37,20 @@ public class AccountController {
 	ServletContext app;
 	@Autowired
 	JavaMailSender mailer;
- static Account accountt ;
+	static Account accountt;
+
 //	static public boolean trangthai;
-	@RequestMapping("/my-account")
+	@GetMapping("/my-account")
 	public String show_acount() {
 		return "/template/shoping-cart";
 	}
 
-	@RequestMapping("/admin")
+	@GetMapping("/admin")
 	public String showadmin() {
 		return "template-admin/admin";
 	}
 
-	@RequestMapping("/account/login")
+	@GetMapping("/login")
 	public String show8(Model model) {
 
 		if (cookie.get("user") == null) {
@@ -76,13 +68,14 @@ public class AccountController {
 			model.addAttribute("check", "checked");
 
 			return "/template/account/login";
-
+//
 		}
-
+		
 	}
 
-	@PostMapping("/account/login")
-	public String dangnhap(Model model, RedirectAttributes params, @RequestParam("username") String user, @RequestParam("password") String pass
+	@PostMapping("/login")
+	public String dangnhap(Model model, RedirectAttributes params, @RequestParam("username") String user,
+			@RequestParam("password") String pass
 
 	) {
 		if (user.length() == 0 && pass.length() == 0) {
@@ -95,7 +88,7 @@ public class AccountController {
 			boolean remember = param.getBoolean("check", false);
 //		boolean active =  account).isActivated();
 			Account accounts = dao_acount.findAccountsByUsername(user, pass);
-           
+
 			if (accounts == null) {
 				model.addAttribute("message", "sai tai khoan hoac mat khau ");
 			} else {
@@ -104,19 +97,19 @@ public class AccountController {
 
 					cookie.add("user", user, 720);
 					cookie.add("pass", pass, 720);
-					if (accounts.isAdmin() ==true) {
-                       
+					if (accounts.isAdmin() == true) {
+
 						return "redirect:/admin";
 					} else {
-						 
-                        accountt = accounts;
+
+						accountt = accounts;
 						return "redirect:/index";
 					}
 				} else {
 					cookie.remove("user");
 					cookie.remove("pass");
 
-					if (accounts.isAdmin() == false) {
+					if (accounts.isAdmin() == true) {
 
 						return "redirect:/admin";
 					} else {
@@ -130,97 +123,94 @@ public class AccountController {
 		return "/template/account/login";
 	}
 
-	@RequestMapping("/account/signup")
+	@GetMapping("/signup")
 	public String show9() {
 		return "/template/account/signup";
 	}
 
-	@PostMapping("/account/signup")
-	public String signup(Model model,@RequestParam("username") String username, @RequestParam("email") String email,
+	@PostMapping("/signup")
+	public String signup(Model model, @RequestParam("username") String username, @RequestParam("email") String email,
 			@RequestParam("password") String pass, @RequestParam("fullname") String fullname,
-			@RequestParam("photo") MultipartFile photo
-			) {
+			@RequestParam("photo") MultipartFile photo) {
 		Account account = new Account();
 		account.setUsername(username);
 		account.setEmail(email);
 		account.setPassword(pass);
 		account.setFullname(fullname);
 		account.setPhoto(photo.getOriginalFilename());
-      
-			dao_acount.save(account);
-			
-		model.addAttribute("user",username);
-		model.addAttribute("pass",pass);
+
+		dao_acount.save(account);
+
+		model.addAttribute("user", username);
+		model.addAttribute("pass", pass);
 		try {
 			String filename = photo.getOriginalFilename();
-		//String path = app.getRealPath("/images/"+filename);
-		File file = new File(app.getRealPath("/images/"+filename));
-		photo.transferTo(file);
-		model.addAttribute("name", photo.getOriginalFilename());
-		model.addAttribute("type", photo.getContentType());
-		model.addAttribute("size", photo.getSize());
-	
+			// String path = app.getRealPath("/images/"+filename);
+			File file = new File(app.getRealPath("/images/" + filename));
+			photo.transferTo(file);
+			model.addAttribute("name", photo.getOriginalFilename());
+			model.addAttribute("type", photo.getContentType());
+			model.addAttribute("size", photo.getSize());
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("loi luu file");
 		}
-		
 
-		
 		return "/template/account/login";
 	}
 
-	@RequestMapping("/account/setting")
+	@GetMapping("/setting")
 	public String show10() {
 		return "/template/account/setting_account";
 	}
 
-	@RequestMapping("/account/myaccount")
+	@GetMapping("/myaccount")
 	public String show11() {
 		return "/template/account/my_account";
 	}
-	@RequestMapping("/account/forgotpassword")
+
+	@GetMapping("/forgotpassword")
 	public String forgotpass() {
-		
-	
+
 		return "/template/account/forgotpassword";
 	}
-	@PostMapping("/account/forgotpassword")
-	public String forgot(Model model ,@RequestParam("username" ) String user,@RequestParam("email") String email) {
+
+	@PostMapping("/forgotpassword")
+	public String forgot(Model model, @RequestParam("username") String user, @RequestParam("email") String email) {
 		System.out.println(user);
 		System.out.println(email);
 		Account account = dao_acount.finallbyusername(user);
-		if(account==null) {
-			
-			model.addAttribute("message","tai khoan khong ton tai");
-			model.addAttribute("username",user);
-		}
-		else if(!email.equals(account.getEmail())){
-			model.addAttribute("username",user);
-			model.addAttribute("email",email);
+		if (account == null) {
+
+			model.addAttribute("message", "tai khoan khong ton tai");
+			model.addAttribute("username", user);
+		} else if (!email.equals(account.getEmail())) {
+			model.addAttribute("username", user);
+			model.addAttribute("email", email);
 			System.out.println(account.getEmail());
-		     model.addAttribute("emailerror","email không trùng với tài khoản");
-		}else {
+			model.addAttribute("emailerror", "email không trùng với tài khoản");
+		} else {
 			try {
-				
-			MimeMessage mail = mailer.createMimeMessage();
-			MimeMessageHelper helper = new MimeMessageHelper(mail);
-			helper.setFrom("nguyendinhthang23082002@gmail.com");
-			helper.setTo(email);
-			helper.setReplyTo("nguyendinhthang230832002@gmail.com");
-			helper.setSubject("chào bạn "+account.getFullname()+"mật khẩu của bạn là :");
-			helper.setText("Mật khẩu của bạn là : "+account.getPassword(),true);
-			//gửi mail nè
-			mailer.send(mail);
-			model.addAttribute("sendmail","vui lòng check mail để nhận lại mật khẩu");
+                
+				MimeMessage mail = mailer.createMimeMessage();
+				MimeMessageHelper helper = new MimeMessageHelper(mail);
+				helper.setFrom("nguyendinhthang23082002@gmail.com");
+				helper.setTo(email);
+				helper.setReplyTo("nguyendinhthang230832002@gmail.com");
+				helper.setSubject("chào bạn " + account.getFullname() + " mật khẩu của bạn là :");
+				helper.setText("Mật khẩu của bạn là : " + account.getPassword(), true);
+				// gửi mail nè
+				mailer.send(mail);
+				model.addAttribute("sendmail", "vui lòng check mail để nhận lại mật khẩu");
 			} catch (Exception e) {
-			   model.addAttribute("sedmailerror","lỗi gửi mail vui lòng kiểm tra lại ");
+				model.addAttribute("sedmailerror", "lỗi gửi mail vui lòng kiểm tra lại ");
 			}
 
 		}
-		
+
 		return "/template/account/forgotpassword";
-		
+
 	}
 
 }

@@ -35,7 +35,7 @@
 						Help & FAQs
 					</a>
 
-			 <a href="/account/myaccount" class="flex-c-m trans-04 p-lr-25">
+			 <a href="/myaccount" class="flex-c-m trans-04 p-lr-25">
 						My Account
 					</a>
 					
@@ -124,9 +124,9 @@
 				<div class="account_icon ">
 					<button class="dropbtn  "> <i class="fas fa-user"></i></button>
 					<div class="account_icon-content">
-					  <a href="/account/login">login</a>
-					  <a href="/account/signup">sign up</a>
-					  <a href="/account/setting">setting</a>
+					  <a href="login">login</a>
+					  <a href="signup">sign up</a>
+					  <a href="setting">setting</a>
 					</div>
 				  </div>
 			</nav>

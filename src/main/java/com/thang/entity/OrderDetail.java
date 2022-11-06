@@ -18,13 +18,13 @@ public class OrderDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="Id")
+	@Column(name="id")
 	private long id;
 
-	@Column(name="Price")
+	
 	private double price;
 
-	@Column(name="Quantity")
+	
 	private int quantity;
 
 	//bi-directional many-to-one association to Order

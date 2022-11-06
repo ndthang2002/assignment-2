@@ -35,36 +35,35 @@ public class Index {
 		
 		List<Category> lists = dao.findAll();
 		model.addAttribute("lists",lists);
-			System.out.println(lists.size());
+		System.out.println(lists.size());
 		List<Product> product = dao_product.findAll();//s1
 		model.addAttribute("product",product);
-//							
+							
 		model.addAttribute("avt",acc.accountt);
-		
-	
+			
 		return "/template/index";
 	}
 	//Tim chi tiet san pham theo id san pham
 
-	@RequestMapping(value="/index#?idsanpham={id}",params="idsanpham")
-	public String productdetail(Model model ,  @PathVariable(value="id" ) int id) {
-//		List<Product> productdetail = dao_product.findByProductId(id);
-//		model.addAttribute("productdetail",productdetail);
-        System.out.println(id);
-		List<Product> product = dao_product.findAll(); //s2
-		model.addAttribute("product",product);	
-		
-		return "/template/index";
-	}
-	
+//	@RequestMapping(value="/index#?idsanpham={id}",params="idsanpham")
+//	public String productdetail(Model model ,  @PathVariable(value="id" ) int id) {
+////		List<Product> productdetail = dao_product.findByProductId(id);
+////		model.addAttribute("productdetail",productdetail);
+//        System.out.println(id);
+//		List<Product> product = dao_product.findAll(); //s2
+//		model.addAttribute("product",product);	
+//		
+//		return "/template/index";
+//	}
+//	
 
 	
 	
 	@RequestMapping(value="/product-detail",params="idsanpham")
 	public String productdetail1(Model model ,@RequestParam("idsanpham") Integer id) {
-		  System.out.println("id: "+id);
+		System.out.println("id: "+id);
 		Product productdetail = dao_product.findByProductId(id);
-		  Product productdetaill = dao_product.getById(id);//s3
+		Product productdetaill = dao_product.getById(id);//s3
 		model.addAttribute("productdetail",productdetail);
        
 		List<Category> lists = dao.findAll();
@@ -76,13 +75,13 @@ public class Index {
 	}
 	
 	@RequestMapping(value="/product",params="loaisanpham")
-	public String list(Model model, @RequestParam("loaisanpham")String id) {		
+	public String list(Model model, @RequestParam("loaisanpham")Integer id) {		
 		System.out.print("id: "+id);
-		if(id=="") {
+		if(id==null) {
 			List<Product> product = dao_product.findAll();//s4
 			model.addAttribute("product",product);
 		}
-		else {	
+		else {
 			List<Category> lists = dao.findAll();
 			model.addAttribute("lists",lists);
 			List<Product> product = dao_product.findByCategoryId(id);	 //loi day
@@ -98,10 +97,12 @@ public class Index {
 		model.addAttribute("lists",lists);
 		
 		List<Product> product = dao_product.findAll();  //s6
+	
 		model.addAttribute("product",product);
 		model.addAttribute("avt",acc.accountt);
 		return "/template/product";
 	}
+	
 	@RequestMapping("/about")
 	public String show1(Model model) {
 		List<Category> lists = dao.findAll();
@@ -133,6 +134,8 @@ public class Index {
 	}
 	@RequestMapping("/header")
 	public String show5() {
+//		List<Product> list = dao_product.findAll();
+//		System.out.println(list.size());
 		return "/template/header";
 	}
 	@RequestMapping("/product-detail")

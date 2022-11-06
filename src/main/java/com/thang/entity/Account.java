@@ -14,31 +14,31 @@ import java.util.List;
  */
 @Data
 @Entity
-@Table(name="Accounts")
+@Table(name="accounts")
 @NamedQuery(name="Account.findAll", query="SELECT a FROM Account a")
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="Username")
+	
 	private String username;
 
-	@Column(name="Activated")
+	
 	private boolean activated;
 
-	@Column(name="Admin")
+	
 	private boolean admin;
 
-	@Column(name="Email")
+	
 	private String email;
 
-	@Column(name="Fullname")
+	
 	private String fullname;
 
-	@Column(name="Password")
+	
 	private String password;
 
-	@Column(name="Photo")
+	
 	private String photo;
 
 	//bi-directional many-to-one association to Authority

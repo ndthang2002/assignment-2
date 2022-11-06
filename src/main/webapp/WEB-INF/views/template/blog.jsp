@@ -33,9 +33,46 @@
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 </head>
 
-
 <style>
+	.dropbtn {
+	
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .account_icon {
+	position: relative;
+	display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .account_icon-content {
+	display: none;
+	position: absolute;
+	
+   min-width: 150px;
+   height: 150px;
+  
+	z-index: 1;
+	margin-left: -19px;
+	border-radius: 10px;
+	
+  }
+  
+  /* Links inside the dropdown */
+  .account_icon-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	font-weight: bold;
+  }
+  .account_icon:hover .account_icon-content {display: block; background-color: #05b9fb; height:150px;}
 
+
+list the loai san pham
 	.dropbtn {
 	
   padding: 16px;
@@ -168,7 +205,10 @@ transition:3s;
 .Categories:hover{
 	color: #FFFF00;
 }
+
+
 </style>
+</head>
 <body class="animsition">
 	
 	<jsp:include page="header.jsp"/>

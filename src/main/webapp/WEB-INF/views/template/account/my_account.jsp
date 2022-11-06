@@ -291,9 +291,9 @@ transition:3s;
 				<div class="dropdown">
 					<button class="dropbtn "> <i class="fas fa-user"></i></button>
 					<div class="dropdown-content">
-					  <a href="/account/login">login</a>
-					  <a href="/account/signup">sign up</a>
-					  <a href="/account/setting">setting</a>
+					  <a href="/login">login</a>
+					  <a href="/signup">sign up</a>
+					  <a href="/setting">setting</a>
 					</div>
 				  </div>
 			</nav>
