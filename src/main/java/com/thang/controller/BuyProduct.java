@@ -1,6 +1,7 @@
 package com.thang.controller;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -64,10 +65,10 @@ public class BuyProduct {
 	
 	@RequestMapping(value="/addtocart", params="id")
 	 public String addtocart(Model model ,@RequestParam("id") Integer id) {
-		 System.out.println("id cua detail: "+id);
-        
+//		 System.out.println("id cua detail: "+id);
+//        
 		 cart.add(id);
-		 System.out.println("them thanh cong");
+//		 System.out.println("them thanh cong");
 
        		
 		return ( "redirect:/shoping-cart");
@@ -85,7 +86,8 @@ public class BuyProduct {
 //			model.addAttribute("count", cart.getCount());
 //			model.addAttribute("amount",cart.getAmount());
 //		model.addAttribute("cart",cart);
-//					
+						List<Category> lists = dao_category.findAll();
+			model.addAttribute("lists",lists);
 		return "/template/shoping-cart";
 		}
 		
@@ -106,14 +108,15 @@ public class BuyProduct {
 				@RequestParam("photo") MultipartFile photo,
 				@RequestParam("price") double price,
 				@RequestParam("categoryid") Category categoryid){
-			Product newpro = new Product();
+			Category cateid = categoryid;
+			try {
+				Product newpro = new Product();
 			newpro.setId(id);
 			newpro.setName(name);
 			newpro.setImage(photo.getOriginalFilename());
 			newpro.setPrice(price);
 		    newpro.setCategory(categoryid);
 			dao_productt.save(newpro);
-			try {
 				
 				String filename = photo.getOriginalFilename();
 				// String path = app.getRealPath("/images/"+filename);
@@ -126,6 +129,7 @@ public class BuyProduct {
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
+				
 			}
 			return "/template/crud";	
 		}

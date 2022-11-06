@@ -154,7 +154,7 @@ transition:3s;
 .dropdown-content a:hover {background-color: rgb(226, 213, 213);}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block; background-color: #FFFFFF; height: 550px;}
+.dropdown:hover .dropdown-content {display: block;  }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 
@@ -405,7 +405,7 @@ transition:3s;
 					<div class="block1 wrap-pic-w">
 						<img src="images/banner-01.jpg" alt="IMG-BANNER">
 
-						<a href="#" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<a href="/product?loaisanpham=1000" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<!-- dang con tinh  -->
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
@@ -430,7 +430,7 @@ transition:3s;
 					<div class="block1 wrap-pic-w">
 						<img src="images/banner-02.jpg" alt="IMG-BANNER">
 
-						<a href="/product?loaisanpham=1000" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<a href="/product?loaisanpham=1" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Men

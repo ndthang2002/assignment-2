@@ -145,7 +145,7 @@ transition:3s;
 .dropdown-content a:hover {background-color: rgb(226, 213, 213);}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block; background-color: #FFFFFF; height: 550px;}
+.dropdown:hover .dropdown-content {display: block; }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 
@@ -333,9 +333,9 @@ transition:3s;
 					<div class="account_icon">
 						<button class="dropbtn "> <i class="fas fa-user"></i></button>
 						<div class="account_icon-content">
-						  <a href="/account/login">login</a>
-						  <a href="/account/signup">sign up</a>
-						  <a href="/account/setting">setting</a>
+						  <a href="/login">login</a>
+						  <a href="/signup">sign up</a>
+						  <a href="/setting">setting</a>
 						</div>
 					  </div>
 				</nav>
@@ -549,17 +549,17 @@ transition:3s;
 						All Products
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women"  onclick="location.href='product?loaisanpham=1001';">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women"  onclick="location.href='product?loaisanpham=1000';">
 						Women
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men" onclick="location.href='product?loaisanpham=1000';">
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men" onclick="location.href='product?loaisanpham=1';">
 						Men
 					</button>
 
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches" onclick="location.href='product?loaisanpham=1002';">
-						Watches
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches" onclick="location.href='product?loaisanpham=1003';">
+						accessories
 					</button>
 				</div>
 

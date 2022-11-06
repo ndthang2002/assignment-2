@@ -107,8 +107,7 @@
 				/* Show the dropdown menu on hover */
 				.dropdown:hover .dropdown-content {
 					display: block;
-					background-color: #FFFFFF;
-					height: 550px;
+					
 				}
 
 				/* Change the background color of the dropdown button when the dropdown content is shown */
@@ -315,9 +314,9 @@
 					<div class="dropdown">
 						<button class="dropbtn "> <i class="fas fa-user"></i></button>
 						<div class="dropdown-content">
-							<a href="/account/login">login</a>
-							<a href="/account/signup">sign up</a>
-							<a href="/account/setting">setting</a>
+							<a href="/login">login</a>
+							<a href="/signup">sign up</a>
+							<a href="/setting">setting</a>
 						</div>
 					</div>
 				</nav>

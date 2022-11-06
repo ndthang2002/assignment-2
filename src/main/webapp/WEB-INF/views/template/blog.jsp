@@ -140,7 +140,7 @@ transition:3s;
 .dropdown-content a:hover {background-color: rgb(226, 213, 213);}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block; background-color: #FFFFFF; height: 550px;}
+.dropdown:hover .dropdown-content {display: block; }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 

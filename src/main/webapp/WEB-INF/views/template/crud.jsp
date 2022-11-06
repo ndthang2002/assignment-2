@@ -363,10 +363,12 @@ $(document).ready(function(){
 						<label>price</label>
 						<input name=price class="form-control" required></input>
 					</div>
+					
 					<div class="form-group">
 						<label>loai</label>
-						<input type="number" name="categoryid" class="form-control" required>
-					</div>					
+						<input type="number" name="categoryid" class="form-control" required> 
+					</div>	
+									
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">

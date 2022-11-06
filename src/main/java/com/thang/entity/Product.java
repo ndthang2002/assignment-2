@@ -13,11 +13,12 @@ import java.util.List;
  * The persistent class for the Products database table.
  * 
  */
+@SuppressWarnings("serial")
 @Data
 @Entity
 @Table(name="products")
 //@NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
-public class Product  {
+public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 //	private static final long serialVersionUID = 7156526077883281623L;
 
@@ -40,8 +41,10 @@ public class Product  {
     @ManyToOne
 	@JoinColumn(name="categoryid")
 	Category category;
-
-   
+ public void setcategori(Category id)
+ {
+	 this.category= id;
+ }
 //	@Column(name="CreateDate")
 //	private Object createDate;
 //	@Temporal(TemporalType.DATE)

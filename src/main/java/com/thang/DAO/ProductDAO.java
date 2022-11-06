@@ -15,5 +15,5 @@ public interface ProductDAO  extends JpaRepository<Product, Integer>{
 	
 	@Query("SELECT p FROM Product p WHERE p.id=?1")
 	Product findByProductId(Integer id);
-	
+
 }
