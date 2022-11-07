@@ -99,7 +99,7 @@ public class AccountController {
 					cookie.add("pass", pass, 720);
 					if (accounts.isAdmin() == true) {
 
-						return "redirect:/admin";
+						return "redirect:/productcontrol";
 					} else {
 
 						accountt = accounts;

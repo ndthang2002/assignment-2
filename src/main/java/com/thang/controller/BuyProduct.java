@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -107,31 +108,62 @@ public class BuyProduct {
 				@RequestParam("name") String name,
 				@RequestParam("photo") MultipartFile photo,
 				@RequestParam("price") double price,
-				@RequestParam("categoryid") Category categoryid){
-			Category cateid = categoryid;
+				@RequestParam("categoryid") int categoryid)
+		
+		{
+			System.out.println(categoryid);
+	       Category category = dao_category.getById(categoryid);
+			System.out.println(category.getName());
+			System.out.println("category nha ae:"+categoryid);
+			System.out.println(id);
+			System.out.println(name);
+			System.out.println(photo.getOriginalFilename());
+			System.out.println(price);
+			System.out.println(categoryid);
+			
+//				Product newpro = new Product();
+//			newpro.setId(id);
+//			newpro.setName(name);
+//			newpro.setImage(photo.getOriginalFilename());
+//			newpro.setPrice(price);
+//		    newpro.setCategory(categoryid);
+//			dao_productt.save(newpro);
+				try {
+					dao_productt.createProduct(id, name, photo.getOriginalFilename(), price, category);
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println(" khong ket qua ta ve");
+				}
+				
 			try {
-				Product newpro = new Product();
-			newpro.setId(id);
-			newpro.setName(name);
-			newpro.setImage(photo.getOriginalFilename());
-			newpro.setPrice(price);
-		    newpro.setCategory(categoryid);
-			dao_productt.save(newpro);
 				
-				String filename = photo.getOriginalFilename();
-				// String path = app.getRealPath("/images/"+filename);
-				File file = new File(app.getRealPath("/images/" + filename));
-				photo.transferTo(file);
-				model.addAttribute("name", photo.getOriginalFilename());
-				model.addAttribute("type", photo.getContentType());
-				model.addAttribute("size", photo.getSize());
 				
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-				
-			}
-			return "/template/crud";	
+					String filename = photo.getOriginalFilename();
+					// String path = app.getRealPath("/images/"+filename);
+					File file = new File(app.getRealPath("/images/" + filename));
+					photo.transferTo(file);
+					model.addAttribute("name", photo.getOriginalFilename());
+					model.addAttribute("type", photo.getContentType());
+					model.addAttribute("size", photo.getSize());
+
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("loi luu file");
+				}
+			return "redirect:/productcontrol";	
 		}
+		@GetMapping(value="/delete", params="id")
+		public String delete(@RequestParam("id") int id) {
+			dao_productt.deleteById(id);
+			return "redirect:/productcontrol";
+			
+		}
+		@GetMapping(value="/edit", params="id")
+		public String edit(@RequestParam("id") int id) {
+			
+			return "/template/crud";
+			
+		}
+		
 		
 }

@@ -13,6 +13,6 @@ import com.thang.entity.Category;
 
 
 
-public interface CategoryDAO extends JpaRepository<Category, String>{
+public interface CategoryDAO extends JpaRepository<Category, Integer>{
 	
 }

@@ -41,10 +41,7 @@ public class Product implements Serializable {
     @ManyToOne
 	@JoinColumn(name="categoryid")
 	Category category;
- public void setcategori(Category id)
- {
-	 this.category= id;
- }
+
 //	@Column(name="CreateDate")
 //	private Object createDate;
 //	@Temporal(TemporalType.DATE)
