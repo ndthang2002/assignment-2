@@ -70,7 +70,7 @@ public class BuyProduct {
 //        
 		 cart.add(id);
 //		 System.out.println("them thanh cong");
-
+         
        		
 		return ( "redirect:/shoping-cart");
 		
@@ -89,6 +89,7 @@ public class BuyProduct {
 //		model.addAttribute("cart",cart);
 						List<Category> lists = dao_category.findAll();
 			model.addAttribute("lists",lists);
+			model.addAttribute("items", cart.getItems());
 		return "/template/shoping-cart";
 		}
 		
@@ -108,8 +109,7 @@ public class BuyProduct {
 				@RequestParam("name") String name,
 				@RequestParam("photo") MultipartFile photo,
 				@RequestParam("price") double price,
-				@RequestParam("categoryid") int categoryid)
-		
+				@RequestParam("categoryid") int categoryid)		
 		{
 			System.out.println(categoryid);
 	       Category category = dao_category.getById(categoryid);
@@ -133,11 +133,8 @@ public class BuyProduct {
 				} catch (Exception e) {
 					// TODO: handle exception
 					System.out.println(" khong ket qua ta ve");
-				}
-				
-			try {
-				
-				
+				}			
+			try {			
 					String filename = photo.getOriginalFilename();
 					// String path = app.getRealPath("/images/"+filename);
 					File file = new File(app.getRealPath("/images/" + filename));
@@ -155,14 +152,12 @@ public class BuyProduct {
 		@GetMapping(value="/delete", params="id")
 		public String delete(@RequestParam("id") int id) {
 			dao_productt.deleteById(id);
-			return "redirect:/productcontrol";
-			
+			return "redirect:/productcontrol";			
 		}
 		@GetMapping(value="/edit", params="id")
 		public String edit(@RequestParam("id") int id) {
 			
-			return "/template/crud";
-			
+			return "redirect:/productcontrol";		
 		}
 		
 		

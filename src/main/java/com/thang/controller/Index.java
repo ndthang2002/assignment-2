@@ -18,6 +18,7 @@ import com.thang.DAO.ProductDAO;
 import com.thang.entity.Category;
 import com.thang.entity.Product;
 import com.thang.service.ParamService;
+import com.thang.service.ShoppingCartService;
 
 @Controller
 public class Index {
@@ -28,6 +29,8 @@ public class Index {
   @Autowired
   ParamService param;
   
+  @Autowired
+  ShoppingCartService cart;
   AccountController acc;
   
 	@RequestMapping(value="index")
@@ -39,6 +42,7 @@ public class Index {
 		List<Product> product = dao_product.findAll();//s1
 		model.addAttribute("product",product);
 							
+		model.addAttribute("items", cart.getItems());
 		model.addAttribute("avt",acc.accountt);
 			
 		return "/template/index";
@@ -97,7 +101,8 @@ public class Index {
 		model.addAttribute("lists",lists);
 		
 		List<Product> product = dao_product.findAll();  //s6
-	
+		//hien thi gio hang
+		model.addAttribute("items", cart.getItems());
 		model.addAttribute("product",product);
 		model.addAttribute("avt",acc.accountt);
 		return "/template/product";

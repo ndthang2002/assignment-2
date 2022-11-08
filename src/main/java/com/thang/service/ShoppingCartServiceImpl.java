@@ -13,7 +13,7 @@ import com.thang.DAO.ProductDAO;
 import com.thang.bean.Item;
 import com.thang.entity.Product;
 
-@SessionScope
+//@SessionScope
 @Service
 
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -27,11 +27,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	public Item add(Integer id) {
 		System.out.println("so nguyen day :" + id);
 		Item item = map.get(id);
-			int idd = id;
-try {
-	if (item == null) {
+//			int idd = id;
+Product p = pdao.getById(id);
+			System.out.println(p.getName());
+     	if (item == null) {
 
-			Product p = pdao.findByProductId(idd);
+			
 			Item i = new Item();
 			i.setId(p.getId());
 			i.setName(p.getName());
@@ -44,12 +45,6 @@ try {
 		} else {
 			item.setQty(item.getQty() + 1);
 		}
-} catch (Exception e) {
-	// TODO: handle exception
-	e.printStackTrace();
-}
-		
-
 //		
 //			if(item != null) {
 //			
@@ -68,9 +63,10 @@ try {
 //			item.setQty(item.getQty() + 1);
 //		}
 //	
+//			return item;
+	return item;
 
-		return item;
-
+		
 	}
 
 	@Override

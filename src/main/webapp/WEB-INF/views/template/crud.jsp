@@ -272,6 +272,7 @@ $(document).ready(function(){
 		<div class="table-wrapper">
 			<div class="table-title">
 				<div class="row">
+				
 					<div class="col-sm-6">
 						<h2>Product <b>Control</b></h2>
 					</div>

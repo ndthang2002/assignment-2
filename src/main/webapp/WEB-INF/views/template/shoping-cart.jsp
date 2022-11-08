@@ -453,54 +453,25 @@
 			</div>
 
 			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
+					<ul class="header-cart-wrapitem w-full">
+				
+				<c:forEach var="item" items="${items}">
 					<li class="header-cart-item flex-w flex-t m-b-12">
 						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
+							<img src="images/${item.image}" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
 							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
+								${item.name}
 							</a>
 
 							<span class="header-cart-item-info">
-								1 x $19.00
+								${item.qty}
 							</span>
 						</div>
 					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
+           </c:forEach>
 				</ul>
 
 				<div class="w-full">
@@ -560,16 +531,15 @@
 
 								<!-- gio hang  -->
 							
-<!-- 								
-									<c:set var="tongtien" value="${sessionScope.quantity *sessionScope.price}"> </c:set>
+				         <c:set var="tongtien" value="${item.qty *item.price}"> </c:set>
 								<c:forEach var="item" begin="1" end="1"> -->
 									
-									<c:forEach var="item" items="${cart.content}">
+									<c:forEach var="item" items="${items}">
 
 									<tr class="table_row">
 										<td class="column-1">
 											<div class="how-itemcart1">
-												<img src="images/${sessionScope.image}" alt="IMG">
+												<img src="images/${item.image}" alt="IMG">
 											</div>
 										</td>
 										<td class="column-2">${item.name}</td>
@@ -588,36 +558,12 @@
 												</div>
 											</div>
 										</td>
-										<td class="column-5">${item.price * item.qty}</td>
+									<td class="column-5">${item.price * item.qty}</td> 
 									</tr>
-								<!-- </c:forEach> -->
+								 </c:forEach>
 								<!-- </c:forEach> -->
 						
 							
-								<tr class="table_row">
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img src="images/item-cart-05.jpg" alt="IMG">
-										</div>
-									</td>
-									<td class="column-2">Lightweight Jacket</td>
-									<td class="column-3">$ 16.00</td>
-									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number"
-												name="num-product2" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-									</td>
-									<td class="column-5">$ 16.00</td>
-								</tr>
 							</table>
 						</div>
 

@@ -38,41 +38,32 @@ public class AccountController {
 	@Autowired
 	JavaMailSender mailer;
 	static Account accountt;
-
 //	static public boolean trangthai;
 	@GetMapping("/my-account")
 	public String show_acount() {
 		return "/template/shoping-cart";
 	}
-
 	@GetMapping("/admin")
 	public String showadmin() {
 		return "template-admin/admin";
 	}
-
 	@GetMapping("/login")
 	public String show8(Model model) {
-
 		if (cookie.get("user") == null) {
 			model.addAttribute("check", "");
 			return "/template/account/login";
 		} else {
-
 			String user = cookie.get("user").getValue();
 			String pass = cookie.get("pass").getValue();
 			System.out.println(user);
 			System.out.println(pass);
-
 			model.addAttribute("user", user);
 			model.addAttribute("pass", pass);
 			model.addAttribute("check", "checked");
-
 			return "/template/account/login";
-//
 		}
 		
 	}
-
 	@PostMapping("/login")
 	public String dangnhap(Model model, RedirectAttributes params, @RequestParam("username") String user,
 			@RequestParam("password") String pass
@@ -94,14 +85,11 @@ public class AccountController {
 			} else {
 
 				if (remember == true) {
-
 					cookie.add("user", user, 720);
 					cookie.add("pass", pass, 720);
 					if (accounts.isAdmin() == true) {
-
 						return "redirect:/productcontrol";
 					} else {
-
 						accountt = accounts;
 						return "redirect:/index";
 					}
@@ -115,9 +103,7 @@ public class AccountController {
 					} else {
 						return "redirect:/index";
 					}
-
 				}
-
 			}
 		}
 		return "/template/account/login";
@@ -159,7 +145,6 @@ public class AccountController {
 
 		return "/template/account/login";
 	}
-
 	@GetMapping("/setting")
 	public String show10() {
 		return "/template/account/setting_account";
@@ -175,7 +160,6 @@ public class AccountController {
 
 		return "/template/account/forgotpassword";
 	}
-
 	@PostMapping("/forgotpassword")
 	public String forgot(Model model, @RequestParam("username") String user, @RequestParam("email") String email) {
 		System.out.println(user);
@@ -191,8 +175,7 @@ public class AccountController {
 			System.out.println(account.getEmail());
 			model.addAttribute("emailerror", "email không trùng với tài khoản");
 		} else {
-			try {
-                
+			try {    
 				MimeMessage mail = mailer.createMimeMessage();
 				MimeMessageHelper helper = new MimeMessageHelper(mail);
 				helper.setFrom("nguyendinhthang23082002@gmail.com");
@@ -206,11 +189,7 @@ public class AccountController {
 			} catch (Exception e) {
 				model.addAttribute("sedmailerror", "lỗi gửi mail vui lòng kiểm tra lại ");
 			}
-
 		}
-
 		return "/template/account/forgotpassword";
-
 	}
-
 }

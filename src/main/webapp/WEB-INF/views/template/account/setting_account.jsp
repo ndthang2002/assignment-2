@@ -43,7 +43,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container">
-         <h2>Cài đặt tài khoản</h2>
+       
          
                    <form class="well form-horizontal shadow">
                       <fieldset>
